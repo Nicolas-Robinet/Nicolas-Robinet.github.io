@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import { projects } from '../data/projects';
+---
+
+<Base
+  title="Projects — Nicolas Robinet"
+  description="A place for the things Nicolas Robinet builds, for clients and for the love of it."
+>
+  <section class="page" id="projects" aria-labelledby="projects-title">
+    <p class="eyebrow">Selected work</p>
+    <h2 class="page-title" id="projects-title">Projects</h2>
+    <p class="lede lede--soft">A place for the things I build, for clients and for the love of it.</p>
+
+    {
+      projects.length === 0 ? (
+        <div class="empty">Nothing here just yet. New work will appear as the light changes.</div>
+      ) : (
+        <div>
+          {
+            projects.map((project) => (
+              <article class="project">
+                <div class="project__num" aria-hidden="true">{project.num}</div>
+                <div class="project__body">
+                  <h3 class="project__title">{project.title}</h3>
+                  <p class="project__meta">{project.meta}</p>
+                  <p class="project__desc">{project.desc}</p>
+                  {project.url && (
+                    <a class="project__link" href={project.url} target="_blank" rel="noopener">See the work &#8594;</a>
+                  )}
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      )
+    }
+  </section>
+</Base>

@@ -1,0 +1,65 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Sidebar from '../components/Sidebar.astro';
+import Sky from '../components/Sky.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Nicolas Robinet, freelance full-stack developer chasing the light.',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#12100e" />
+    <meta name="color-scheme" content="dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&family=Zen+Old+Mincho:wght@400;600&display=swap"
+    />
+
+    <ClientRouter />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="layout">
+      <aside class="sidebar" transition:persist="sidebar">
+        <Sidebar />
+      </aside>
+
+      <Sky />
+
+      <main class="content" id="main" tabindex="-1">
+        <div class="content__inner">
+          <slot />
+        </div>
+      </main>
+    </div>
+
+    <script>
+      import '../scripts/sky.ts';
+      import '../scripts/main.ts';
+    </script>
+  </body>
+</html>

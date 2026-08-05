@@ -1,0 +1,49 @@
+---
+const path = Astro.url.pathname;
+
+const links = [
+  { href: '/', label: 'Home', key: 'home' },
+  { href: '/projects', label: 'Projects', key: 'projects' },
+  { href: '/journal', label: 'Journal', key: 'journal' },
+  { href: '/about', label: 'About', key: 'about' },
+  { href: '/contact', label: 'Contact', key: 'contact' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return path === '/';
+  if (href === '/journal') return path.startsWith('/journal') || path.startsWith('/posts');
+  return path.startsWith(href);
+}
+---
+
+<div class="brand">
+  <p class="brand__est"><span class="spark" aria-hidden="true">&#10022;</span>Since 2026</p>
+  <h1 class="brand__name">Nicolas<br />Robinet</h1>
+  <p class="brand__tagline">full-stack developer &middot; chasing the light</p>
+</div>
+
+<nav class="nav" aria-label="Primary">
+  {
+    links.map((link) => (
+      <a
+        class="nav__link"
+        href={link.href}
+        aria-current={isActive(link.href) ? 'page' : undefined}
+      >
+        <span class="nav__dot" aria-hidden="true">&#9679;</span>
+        {link.label}
+      </a>
+    ))
+  }
+</nav>
+
+<div class="sidebar__footer">
+  <div class="social">
+    <a href="https://github.com/Nicolas-Robinet" target="_blank" rel="noopener">GitHub</a>
+    <a href="mailto:nicolasrobinet.work@gmail.com">Mail</a>
+    <!-- Add your profile URL to enable:
+    <a href="" target="_blank" rel="noopener">In</a>
+    -->
+  </div>
+  <p class="sidebar__motto">the day is not yet over.</p>
+</div>

@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="About — Nicolas Robinet"
+  description="Nicolas Robinet is a freelance full-stack developer, happy in a database migration or a CSS grid, and fond of the parts other people tend to dread."
+>
+  <section class="page" id="about" aria-labelledby="about-title">
+    <p class="eyebrow">About me</p>
+    <h2 class="page-title" id="about-title">About</h2>
+
+    <div class="about">
+      <img class="portrait" src="/assets/portrait.jpg" width="186" height="238" alt="Nicolas Robinet" decoding="async" />
+      <p>I am a freelance full-stack developer, as happy in a database migration as in a CSS grid, and fond of the parts other people tend to dread. I take on client work from beginning to end, from the first empty repository to the calm of a clean production deploy.</p>
+      <p>Away from client work I study cloud and DevOps with steady curiosity, Kubernetes one week, Docker the next, each layer another horizon past the last. And I am a lifelong gamer. Learning a game rhythm is the same patience that makes for good debugging.</p>
+      <p>If you have something worth building, I would love to hear about it.</p>
+
+      <div class="about__cols">
+        <div class="col">
+          <p class="col__label">Frontend</p>
+          <p class="col__list">React &amp; Next.js<br />Astro<br />Angular<br />TypeScript</p>
+        </div>
+        <div class="col">
+          <p class="col__label">Backend</p>
+          <p class="col__list">Node<br />Java &amp; Spring<br />PHP &amp; Laravel<br />PostgreSQL &amp; Prisma<br />REST &amp; tRPC APIs</p>
+        </div>
+        <div class="col">
+          <p class="col__label">Currently studying</p>
+          <p class="col__list">AWS<br />Kubernetes<br />Docker<br />CI/CD pipelines</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

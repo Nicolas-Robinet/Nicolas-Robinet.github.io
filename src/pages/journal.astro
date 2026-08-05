@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts')).sort((a, b) =>
+  b.data.date.localeCompare(a.data.date)
+);
+---
+
+<Base
+  title="The Journal — Nicolas Robinet"
+  description="Small notes gathered along the way, on code, clouds, and the quiet hours in between."
+>
+  <section class="page" id="journal" aria-labelledby="journal-title">
+    <p class="eyebrow">Writings</p>
+    <h2 class="page-title" id="journal-title">The Journal</h2>
+    <p class="lede lede--soft">Small notes gathered along the way, on code, clouds, and the quiet hours in between.</p>
+
+    {
+      posts.length === 0 ? (
+        <div class="empty">No entries yet. The first note is still being written.</div>
+      ) : (
+        <div class="journal">
+          {
+            posts.map((post) => (
+              <a class="post-item" href={`/posts/${post.id}/`}>
+                <time class="post-item__date">{post.data.date}</time>
+                <div>
+                  <span class="post-item__title">{post.data.title}</span>
+                  <p class="post-item__excerpt">{post.data.excerpt}</p>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      )
+    }
+  </section>
+</Base>

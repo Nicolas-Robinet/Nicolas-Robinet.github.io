@@ -15,7 +15,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Base title={`${post.data.title} — Nicolas Robinet`} description={post.data.excerpt}>
+<Base title={`${post.data.title} · Nicolas Robinet`} description={post.data.excerpt}>
   <section class="page" id="post" aria-labelledby="post-title">
     <a class="article__back" href="/journal">&#8592; Back to the Journal</a>
     <p class="article__meta" id="post-meta">{post.data.date} &middot; {post.data.read}</p>

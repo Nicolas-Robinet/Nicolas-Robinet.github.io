@@ -13,6 +13,10 @@ const {
   title,
   description = 'Nicolas Robinet, freelance full-stack developer chasing the light.',
 } = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://nicolas-robinet.github.io')
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl)
+const ogImage = new URL('/assets/portrait.jpg', siteUrl)
 ---
 
 <!DOCTYPE html>
@@ -28,6 +32,17 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Nicolas Robinet" />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="generator" content={Astro.generator} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 

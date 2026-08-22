@@ -26,7 +26,12 @@ import { projects } from '../data/projects';
                   <p class="project__meta">{project.meta}</p>
                   <p class="project__desc">{project.desc}</p>
                   {project.url && (
-                    <a class="project__link" href={project.url} target="_blank" rel="noopener">See the work &#8594;</a>
+                    <a
+                      class="project__link"
+                      href={project.url}
+                      target={project.url.startsWith('/') ? undefined : '_blank'}
+                      rel={project.url.startsWith('/') ? undefined : 'noopener'}
+                    >{project.linkLabel ?? 'See the work'} &#8594;</a>
                   )}
                 </div>
               </article>
